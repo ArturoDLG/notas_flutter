@@ -1,6 +1,6 @@
 //Seccion 2
 //Lecciones:
-//17: Listas - parte 1
+//17 - 19: Listas
 // ArturoDLG
 
 void main() {
@@ -9,11 +9,11 @@ void main() {
 
   List<tipoDato> nombreLista = [<elementos>...];
 
-  Nota: si declaramos una lista usando var, esta será de tipo dynamic
+  Nota: si declaramos una lista usando var o final, esta será de tipo dynamic
   ejemplo:
   var lista = []; // List<dynamic>
 
-  Una forma de definirle un tipo, es espexificando el tipo de la siguiente 
+  Una forma de definirle un tipo, es especificando el tipo de la siguiente 
   manera:
   var lista = <tipoDato> []; //List<tipoDato>
   */
@@ -28,10 +28,10 @@ void main() {
 
   // podemos modificar la lista con sus respectivos metodos
   otherList.add(10);
-  print("Lista final = $otherList");
+  print("otherList = $otherList");
 
   otherList.clear();
-  print("Lista final = $otherList");
+  print("otherList = $otherList");
 
   /*
   Cuando definimos una lista como final, es posible modificarla (como agregar
@@ -61,7 +61,7 @@ void main() {
   numbers.remove(5);
 
   /*
-  Nota: em metodo remove splo remueve la primera incidencia de elemento a quitar
+  Nota: el metodo remove solo remueve la primera incidencia de elemento a quitar
   de la lista si existe mas de uno. Si se desea remover todas las incidencias
   de un elemento buscado, debes de utilizar le metodo removeWhere
 
@@ -77,7 +77,7 @@ void main() {
   final prices = <int>[12, 32, 45, 67, 69, 90, 17];
   print("prices $prices");
 
-  //filtrar elementos que cmplan con un criterio
+  //filtrar elementos que cumplan con un criterio
   print(prices.where((element) => element % 2 != 0));
 
   //eliminar elementos que cumplan un criterio

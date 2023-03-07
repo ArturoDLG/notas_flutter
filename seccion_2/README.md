@@ -7,3 +7,4 @@
 15. Datos inmutables - final 
 16. Datos inmutables - const -> datos_inmutables.dart
 17 - 19. Listas -> listas.dart
+20 - 24. Map -> maps.dart
