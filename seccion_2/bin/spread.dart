@@ -1,6 +1,4 @@
-//Seccion 2
-//Lecciones:
-//25: spread operator
+//Seccion 2: 25. spread operator
 // ArturoDLG
 
 /*
