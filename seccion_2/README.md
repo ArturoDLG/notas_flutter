@@ -17,3 +17,9 @@
 * 32.- for -> bucles.dart
 * 34.- Primeros pasos con null safety -> null_safety.dart
 * 35 - 39.- Métodos -> metodos.dart
+* 40.- Null check operator
+* 41.- Definir una clase
+* 42.- El operador de igualdad y el hashCode -> clases.dart
+* 43.- Late
+* 44.- Constructores -> constructores.dart
+* 45.- Factory constructors -> factoryConstructor.dart
