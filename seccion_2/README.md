@@ -25,3 +25,5 @@
 * 45.- Factory constructors -> factory_constructor.dart 
 * 46 - 47: Datos privados
 * 48: Clases privadas -> datos_privados.dart
+* 49: Propiedades inmutables -> inmutables.dart
+* 50 - 51: Variables globales y estaticas -> goblales_estaticas.dart
