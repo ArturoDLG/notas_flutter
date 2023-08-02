@@ -22,4 +22,6 @@
 * 42.- El operador de igualdad y el hashCode -> clases.dart
 * 43.- Late
 * 44.- Constructores -> constructores.dart
-* 45.- Factory constructors -> factoryConstructor.dart
+* 45.- Factory constructors -> factory_constructor.dart 
+* 46 - 47: Datos privados
+* 48: Clases privadas -> datos_privados.dart
