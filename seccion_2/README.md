@@ -27,3 +27,7 @@
 * 48: Clases privadas -> datos_privados.dart
 * 49: Propiedades inmutables -> inmutables.dart
 * 50 - 51: Variables globales y estaticas -> goblales_estaticas.dart
+* 52: enums -> enums.dart
+* 53: Herencia
+* 54: Clases abstractas -> herencia.dart
+* 55 - 56: Mixins -> mixins.dart
