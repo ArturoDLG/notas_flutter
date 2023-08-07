@@ -12,6 +12,7 @@ void main() {
   // castear un dato a String
   String resultCast = fullName + ' ' + age.toString();
   // .toString convierte el entero age a String
+  print(resultCast);
 
   // formatear variables
   String resultFormat = '$name $lastName, age: $age';
