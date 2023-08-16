@@ -11,8 +11,8 @@ String _newApyKey = "";
 
 String get newApiKey => _newApyKey;
 
-void updateApiKey(String api_key) {
-  _newApyKey = api_key;
+void updateApiKey(String apiKey) {
+  _newApyKey = apiKey;
 }
 
 /*

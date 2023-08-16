@@ -32,3 +32,6 @@
 * 54: Clases abstractas -> herencia.dart
 * 55 - 56: Mixins -> mixins.dart
 * 57 - 58: Try catch -> try_catch.dart
+* 59 - 62: Datos genéricos -> datos_genericos.dart
+* 63 - 65: Futures -> futures.dart
+* 66: Lambda functions -> lambdas.dart
