@@ -1,5 +1,8 @@
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'widgets/custom_icons_lesson.dart';
+import 'widgets/image_lesson.dart';
+//import 'widgets/cupertino_lesson.dart';
+//import 'widgets/custom_icons_lesson.dart';
 //import 'widgets/custom_font_lesson.dart';
 //import 'widgets/listview_lesson.dart';
 //import 'widgets/single_child_sv_lesson.dart';
@@ -22,7 +25,11 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: CustomsIconsLesson(),
+      home: ImageLesson(),
     );
+
+    // return const CupertinoApp(
+    //   home: CupertinoLesson(),
+    // );
   }
 }

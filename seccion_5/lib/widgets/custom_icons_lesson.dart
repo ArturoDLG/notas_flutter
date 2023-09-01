@@ -4,7 +4,8 @@
 //Arturo DLG
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:seccion_3/icons/system_icon_icons.dart';
+//import 'package:seccion_3/icons/custom_font.dart';
+import 'package:seccion_3/icons/other_font.dart';
 
 /*
 Icon es un widget que nos permite mostrar iconos, para inidcar funciones o 
@@ -43,10 +44,15 @@ class CustomsIconsLesson extends StatelessWidget {
             ),
             //iconos personalizados
             //no se pueden visibilizar
+            // Icon(
+            //   CustomFontIcons.linux,
+            //   size: 50,
+            //   color: Colors.red,
+            // ),
             Icon(
-              SystemIcon.apple,
+              OtherFontIcons.markdown,
               size: 50,
-              color: Colors.red,
+              color: Colors.cyan,
             ),
           ],
         ),
@@ -54,3 +60,10 @@ class CustomsIconsLesson extends StatelessWidget {
     );
   }
 }
+
+/*
+Nota:
+
+Si agregamos nuevos iconos a nuestro paquete, deberemos reemplazar los archivos
+.json, .ttf y .dart por los nuevos para actualizarlo.
+*/
