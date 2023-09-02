@@ -9,20 +9,26 @@ class ThinkingBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        Avatar(
-          size: 50,
-          asset: 'assets/users/1.jpg',
-        ),
-        SizedBox(width: 20),
-        Text(
-          "Que estas pensando, Lisa?",
-          style: TextStyle(
-            color: Colors.grey,
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: Row(
+        children: [
+          Avatar(
+            size: 50,
+            asset: 'assets/users/1.jpg',
           ),
-        ),
-      ],
+          SizedBox(width: 20),
+          //Agregamos un Flexible contemplando que el texto pueda ser mas largo
+          Flexible(
+            child: Text(
+              "Que estas pensando, Lisa?",
+              style: TextStyle(
+                color: Colors.grey,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

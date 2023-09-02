@@ -4,4 +4,4 @@ Este es un mini proyecto utilizando los widgets vistos en la [sección 5](https:
 del curso.
 En el se hace una replica de la UI de la app de Facebook basada en la siguiente imagen:
 
-![UI de Facebook base para el proyecto](/facebook_desing.jpeg)
+![UI de Facebook base para el proyecto](facebook_design.jpeg)

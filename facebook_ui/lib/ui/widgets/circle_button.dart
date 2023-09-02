@@ -20,7 +20,7 @@ class CircleButton extends StatelessWidget {
           Container(
             width: 35,
             height: 35,
-            margin: const EdgeInsets.symmetric(horizontal: 5),
+            //margin: const EdgeInsets.symmetric(horizontal: 5),
             decoration: BoxDecoration(
               color: color,
               shape: BoxShape.circle,
