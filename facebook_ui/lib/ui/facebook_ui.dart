@@ -30,7 +30,7 @@ class FacebookUI extends StatelessWidget {
             username: faker.person.name(),
           ),
           title: faker.lorem.sentence(),
-          createdAt: faker.date.dateTime(),
+          createdAt: faker.date.dateTime(minYear: 2020, maxYear: 2023),
           imageUrl: faker.image.image(),
           commentsCount: random.integer(50000),
           sharedCount: random.integer(50000),

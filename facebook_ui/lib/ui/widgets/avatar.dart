@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 ///Imagen de usuario
@@ -14,13 +15,18 @@ class Avatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final fromNetwork =
+        asset.startsWith('http://') || asset.startsWith('https://');
+    final image =
+        fromNetwork ? CachedNetworkImageProvider(asset) : AssetImage(asset);
     return Container(
       width: size,
       height: size,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         image: DecorationImage(
-          image: AssetImage(asset),
+          image: image as ImageProvider,
+          fit: BoxFit.cover,
         ),
         border: Border.all(
           width: borderWidth,
