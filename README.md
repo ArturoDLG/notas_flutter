@@ -6,5 +6,7 @@ En el se encuentran una serie de ejemplos desarrollados en los temas vistos en e
 
 Los temas contenidos en este repositorio son:
 
-* [Seccion 2: Programación con Dart y null safety](https://github.com/ArturoDLG/notas_flutter/tree/ce8dedacc5a9c7fdea4687187eb76436d5a1b0aa/seccion_2)
-* [Sección 5: Widgets mas usados en Flutter]()
+* [Seccion 2: Programación con Dart y null safety](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_2)
+* [Sección 5: Widgets mas usados en Flutter](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_5)
+* [Sección 5 (Proyecto): Facebook UI](https://github.com/ArturoDLG/notas_flutter/tree/main/facebook_ui)
+* [Sección 6: StatelessWidget y StatefulWidget]()
