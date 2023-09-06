@@ -3,7 +3,10 @@
 //154 - 160: Dialogos
 //ArturoDLG
 import 'package:flutter/material.dart';
-import 'package:seccion_7/dialogs/confirm_dialog.dart';
+import '../dialogs/bottom_sheet_dialog.dart';
+import '../dialogs/confirm_dialog.dart';
+import '../dialogs/cupertino_dialog.dart';
+import '../dialogs/custom_dialog.dart';
 
 /*
 Los dialogos son un tipo de widget que nos permite mostrar un mensaje encima de 
@@ -39,7 +42,33 @@ class DialogsPage extends StatelessWidget {
               );
               print('is Ok $isOK');
             },
-          )
+          ),
+          ListTile(
+            title: const Text('show Cupertino dialog'),
+            onTap: () async {
+              final value = await showDialogWithCupertinoStyle(
+                context,
+                title: 'Hi',
+                content: 'How are you?',
+              );
+              print(value);
+            },
+          ),
+          ListTile(
+            title: const Text('show bottom sheet dialog'),
+            onTap: () {
+              showBottomSheetDialog(context);
+            },
+          ),
+          ListTile(
+            title: const Text('show custom dialog'),
+            onTap: () {
+              showCustomDialog(
+                context,
+                dismissible: false,
+              );
+            },
+          ),
         ],
       ),
     );

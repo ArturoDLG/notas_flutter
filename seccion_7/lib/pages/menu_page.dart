@@ -15,18 +15,21 @@ a este o eliminandolos.
 Para pasar datos de una page a otra existen varias maneras:
 
 * Si utilizamos MaterialPageRoute, debemos de pasar los datos a traves del 
-constructor de la clase.
+constructor de la clase
 */
 
 class PageData {
   final String name;
   final String label;
   final Object? arguments;
+  // funcion para recuperar los datos retornados por una pagina
+  final void Function(Object?)? onResult;
 
   const PageData({
     required this.name,
     required this.label,
     this.arguments,
+    this.onResult,
   });
 }
 
@@ -38,27 +41,39 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
-  final _color = Colors.blue;
+  Color _color = Colors.blue;
 
-  final _pages = const [
-    PageData(
-      name: Routes.login,
-      label: 'Go to login',
-      arguments: 'test@test.com',
-    ),
-    PageData(
-      name: Routes.counter,
-      label: 'Go to login',
-    ),
-    PageData(
-      name: Routes.colorPicker,
-      label: 'Pick Color',
-    ),
-    PageData(
-      name: Routes.dialogs,
-      label: 'Go to dialogs',
-    ),
-  ];
+  late final List<PageData> _pages;
+
+  @override
+  void initState() {
+    _pages = [
+      const PageData(
+        name: Routes.login,
+        label: 'Go to login',
+        arguments: 'test@test.com',
+      ),
+      const PageData(
+        name: Routes.counter,
+        label: 'Go to counter',
+      ),
+      PageData(
+        name: Routes.colorPicker,
+        label: 'Pick Color',
+        onResult: (result) {
+          if (result is Color) {
+            _color = result;
+            setState(() {});
+          }
+        },
+      ),
+      const PageData(
+        name: Routes.dialogs,
+        label: 'Go to dialogs',
+      ),
+    ];
+    super.initState();
+  }
 
   void _onTap(BuildContext context) {
     final faker = Faker();
@@ -149,12 +164,15 @@ class _MenuPageState extends State<MenuPage> {
           final data = _pages[index];
           return ListTile(
             title: Text(data.label),
-            onTap: () {
-              Navigator.pushNamed(
+            onTap: () async {
+              final result = await Navigator.pushNamed(
                 context,
                 data.name,
                 arguments: data.arguments,
               );
+              if (data.onResult != null) {
+                data.onResult!(result);
+              }
             },
           );
         },

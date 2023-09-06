@@ -1,6 +1,4 @@
-//Seccion 7
-//lecciones:
-//152: Retornar datos de una ruta
+//Seccion 7: 152. Retornar datos de una ruta
 //ArturoDLG
 import 'package:flutter/material.dart';
 

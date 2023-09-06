@@ -1,6 +1,4 @@
-//Seccion 7
-//lecciones:
-//145: pop y maybePop
+//Seccion 7: 145. pop y maybePop
 //ArturoDLG
 import 'package:flutter/material.dart';
 import '/pages/profile_page.dart';

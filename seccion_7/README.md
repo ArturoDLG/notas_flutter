@@ -10,6 +10,7 @@
 * 152.- pushNamedAndRemoveUntil
 * 153.- Retornar datos de una pagina
 * 155 - 161.- Dialogos
+* 162 - 163.- WillPopScope 
 
 ## Archivos
 
@@ -20,3 +21,5 @@
 * splash_page.dart -> 151.
 * color_picker.dart -> 153.
 * dialogs_page.dart -> 155 - 161.
+* counter_page.dart -> 162.
+* custom_dialog.dart -> 163.

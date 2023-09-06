@@ -1,6 +1,4 @@
-//Seccion 7
-//lecciones:
-//151: pushReplacementNamed
+//Seccion 7: 51. pushReplacementNamed
 //ArturoDLG
 import 'package:flutter/material.dart';
 import '../routes.dart';
