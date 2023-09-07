@@ -9,4 +9,6 @@ Los temas contenidos en este repositorio son:
 * [Seccion 2: Programación con Dart y null safety](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_2)
 * [Sección 5: Widgets mas usados en Flutter](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_5)
 * [Sección 5 (Proyecto): Facebook UI](https://github.com/ArturoDLG/notas_flutter/tree/main/facebook_ui)
-* [Sección 6: StatelessWidget y StatefulWidget]()
+* [Sección 6: StatelessWidget y StatefulWidget](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_6)
+* [Sección 7: Navegación y diálogos](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_7)
+* [Sección 8: Inputs](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_8)
