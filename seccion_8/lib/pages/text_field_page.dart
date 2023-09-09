@@ -5,10 +5,13 @@
 //169: PrimarySwatch
 //170: inputDecoration
 //173: textEditingController
+//175: Input Formatters - parte 1
 //ArturoDLG
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:seccion_8/constants/countries.dart';
 import 'package:seccion_8/models/country.dart';
+import 'package:seccion_8/utils/capitalize_input_formatter.dart';
 
 /*
 TextField es un widget que nos permite ingresar texto desde el teclado de 
@@ -49,6 +52,8 @@ Nosotros podemos manejar el comportamiento del texto de nuestro TextField usando
 un TextEditingController. Esta clase se agrega dentro del parametro controller y 
 nos permite ver lo que se esta escribiendo mediante su getter/setter text, por 
 lo que no dependeremos de usar una variable externa para hacer esto.
+
+Podemos hacer que nuestro TextField solamente reciba ciertos patrones de texto si no existe una configuracion de teclado que se ajuste a lo que necesitamos. Esto lo podemos hacer mediante el parametro inputFormatters. el cual recibe una clase que extienda de TextInputFormatter. Para filtrar el contenido, nos podemos apoyar de FilteringInputFormatter, el cual recibe un RegExp que pase el patron a buscar, allow, el cual nos indica si aceptamos o rechazamos aquellas incidencias con el patron ingresado y como parametro opcional a replacementString que por defecto es '', el cual sustituye el caracter que no coincide con el patron con dicho string.
 */
 
 class TextFieldPage extends StatefulWidget {
@@ -142,6 +147,13 @@ class _TextFieldPageState extends State<TextFieldPage> {
           //enabled: false,
           //controlador del textField
           controller: _textEditingController,
+          inputFormatters: [
+            FilteringTextInputFormatter.allow(
+              RegExp(r'^[a-zA-Z\s]*$'),
+              //replacementString: '-',
+            ),
+            CapitalizaInputFormatter(),
+          ],
           onChanged: (_) {
             setState(() {});
           },
@@ -172,4 +184,6 @@ GestureDetector e implementar lo encontrado en main.dart.
 
 Si solo definimos el paramtro border en los estilos de borde de TextField, este 
 estilo se aplicará para demas paramtros de este tipo. 
+
+inputFormatters puede recibir un listado de TextInputFormatters, pero no se recomienda usar varios, ya que se pueden sobreponer entre ellos.
 */

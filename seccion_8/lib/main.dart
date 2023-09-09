@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seccion_8/pages/app_routes.dart';
 import 'package:seccion_8/utils/app_theme.dart';
-import 'package:seccion_8/utils/material_color_generator.dart';
 
 void main() {
   runApp(const MainApp());
