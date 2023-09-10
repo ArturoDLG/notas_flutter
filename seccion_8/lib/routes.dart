@@ -8,4 +8,6 @@ class Routes {
   static const switchWidget = '/switch';
   static const slider = '/slider';
   static const calendar = '/calendar';
+  static const cupertinoCalendar = '/cupertino-calendar';
+  static const pickerDialog = '/picker-dialog';
 }

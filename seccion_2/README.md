@@ -23,15 +23,15 @@
 * 43.- Late
 * 44.- Constructores -> constructores.dart
 * 45.- Factory constructors -> factory_constructor.dart 
-* 46 - 47: Datos privados
-* 48: Clases privadas -> datos_privados.dart
-* 49: Propiedades inmutables -> inmutables.dart
-* 50 - 51: Variables globales y estaticas -> goblales_estaticas.dart
-* 52: enums -> enums.dart
-* 53: Herencia
-* 54: Clases abstractas -> herencia.dart
-* 55 - 56: Mixins -> mixins.dart
-* 57 - 58: Try catch -> try_catch.dart
-* 59 - 62: Datos genéricos -> datos_genericos.dart
-* 63 - 65: Futures -> futures.dart
-* 66: Lambda functions -> lambdas.dart
+* 46 - 47.- -> Datos privados
+* 48.- Clases privadas -> datos_privados.dart
+* 49.- Propiedades inmutables -> inmutables.dart
+* 50 - 51.- Variables globales y estaticas -> goblales_estaticas.dart
+* 52.- enums -> enums.dart
+* 53.- Herencia
+* 54.- Clases abstractas -> herencia.dart
+* 55 - 56.- Mixins -> mixins.dart
+* 57 - 58.- Try catch -> try_catch.dart
+* 59 - 62.- Datos genéricos -> datos_genericos.dart
+* 63 - 65.- Futures -> futures.dart
+* 66.- Lambda functions -> lambdas.dart

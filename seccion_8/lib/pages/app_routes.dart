@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:seccion_8/pages/calendar_page.dart';
 import 'package:seccion_8/pages/check_box_page.dart';
+import 'package:seccion_8/pages/cupertino_calendar_page.dart';
+import 'package:seccion_8/pages/dialog_calendar_page.dart';
 import 'package:seccion_8/pages/keyboard_types.dart';
 import 'package:seccion_8/pages/radio_page.dart';
 import 'package:seccion_8/pages/slider_page.dart';
@@ -17,5 +19,7 @@ Map<String, Widget Function(BuildContext)> get appRoutes {
     Routes.switchWidget: (_) => const SwitchPage(),
     Routes.slider: (_) => const SliderPage(),
     Routes.calendar: (_) => const CalendarPage(),
+    Routes.cupertinoCalendar: (_) => const CupertinoCalendarPage(),
+    Routes.pickerDialog: (_) => const DialogCalendarPage(),
   };
 }
