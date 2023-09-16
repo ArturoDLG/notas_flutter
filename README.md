@@ -12,3 +12,5 @@ Los temas contenidos en este repositorio son:
 * [Sección 6: StatelessWidget y StatefulWidget](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_6)
 * [Sección 7: Navegación y diálogos](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_7)
 * [Sección 8: Inputs](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_8)
+* [Sección 8: Inputs](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_9)
+* [Sección 8: Inputs](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_10)
