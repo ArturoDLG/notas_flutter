@@ -14,3 +14,4 @@ Los temas contenidos en este repositorio son:
 * [Sección 8: Inputs](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_8)
 * [Sección 9: Keys](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_9)
 * [Sección 10: El contexto en Flutter](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_10)
+* [Sección 11: Inherited Widget](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_11)
