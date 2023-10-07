@@ -7,11 +7,8 @@ abstract class AuthenticationRepository {
   /// Getter para indicar si hay un inicio de seccion activo.
   Future<bool> get isSignedIn;
 
-  /// Metodo para recuperar los datos de un usuario.
-  Future<User?> getUserData();
-
   /// Metodo para iniciar una sesión.
-  Future<Either<SingInFailure, User>> singIn(
+  Future<Either<SignInFailure, User>> singIn(
     String username,
     String password,
   );

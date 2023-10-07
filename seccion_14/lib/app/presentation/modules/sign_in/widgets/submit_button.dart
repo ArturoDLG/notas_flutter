@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../domain/enums.dart';
-import '../../../../domain/repositories/authentication_repository.dart';
 import '../../../routes/routes.dart';
 import '../views/controller/sign_in_controller.dart';
 
@@ -12,7 +11,7 @@ class SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final SignInController controller = Provider.of(context);
-    if (controller.fetching) {
+    if (controller.state.fetching) {
       return const CircularProgressIndicator();
     } else {
       return MaterialButton(
@@ -31,25 +30,18 @@ class SubmitButton extends StatelessWidget {
   Future<void> _submit(BuildContext context) async {
     final SignInController controller = context.read();
 
-    controller.onFetchingChanged(true);
-
-    final result = await context.read<AuthenticationRepository>().singIn(
-          controller.username,
-          controller.password,
-        );
+    final result = await controller.submit();
 
     if (!controller.mounted) {
       return;
     }
     result.when(
       (failure) {
-        controller.onFetchingChanged(false);
-
         final message = switch (failure) {
-          SingInFailure.notFound => 'Not Found',
-          SingInFailure.unauthorized => 'Invalid Password',
-          SingInFailure.unknown => 'Error',
-          SingInFailure.network => 'Network error',
+          SignInFailure.notFound => 'Not Found',
+          SignInFailure.unauthorized => 'Invalid Password',
+          SignInFailure.unknown => 'Error',
+          SignInFailure.network => 'Network error',
         };
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(

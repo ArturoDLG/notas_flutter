@@ -25,28 +25,28 @@ class AuthenticationAPI {
   /// [failure] Recibe una instancia de [HttpFailure] el cual nos indicará si
   /// sucedió un error en la petición, de conexión o un error desconocido.
   ///
-  /// El metodo retorna un [Either] con el [SingInFailure] correspondiente al
+  /// El metodo retorna un [Either] con el [SignInFailure] correspondiente al
   /// error recibido.
-  Either<SingInFailure, String> _handleFailure(HttpFailure failure) {
+  Either<SignInFailure, String> _handleFailure(HttpFailure failure) {
     if (failure.statusCode != null) {
       return switch (failure.statusCode!) {
-        401 => Either.left(SingInFailure.unauthorized),
-        404 => Either.left(SingInFailure.notFound),
-        _ => Either.left(SingInFailure.unknown),
+        401 => Either.left(SignInFailure.unauthorized),
+        404 => Either.left(SignInFailure.notFound),
+        _ => Either.left(SignInFailure.unknown),
       };
     }
 
     if (failure.exception is NetworkException) {
-      return Either.left(SingInFailure.network);
+      return Either.left(SignInFailure.network);
     }
-    return Either.left(SingInFailure.unknown);
+    return Either.left(SignInFailure.unknown);
   }
 
   /// Metodo para solicitar un requestToken.
   ///
   /// Devuelve un [Either] con un [String] con el requestToken si la petición
-  /// funciona o un [SingInFailure] si sucede un error.
-  Future<Either<SingInFailure, String>> createRequestToken() async {
+  /// funciona o un [SignInFailure] si sucede un error.
+  Future<Either<SignInFailure, String>> createRequestToken() async {
     final result = await _http.request(
       '/authentication/token/new',
       onSuccess: (responseBody) {
@@ -68,8 +68,8 @@ class AuthenticationAPI {
   /// [requestToken] recibe el token de [createRequestToken]
   ///
   /// Devuelve un [Either] con un [String] con el nuevo requestToken si la
-  /// petición funciona o un [SingInFailure] si sucede un error.
-  Future<Either<SingInFailure, String>> createSessionWithLogin({
+  /// petición funciona o un [SignInFailure] si sucede un error.
+  Future<Either<SignInFailure, String>> createSessionWithLogin({
     required String username,
     required String password,
     required String requestToken,
@@ -100,8 +100,8 @@ class AuthenticationAPI {
   /// [requestToken] recibimos un String con el token de [createSessionWithLogin]
   ///
   /// Devuelve un [Either] con un [String] con el sessionId si la petición
-  /// funciona o un [SingInFailure] si sucede un error.
-  Future<Either<SingInFailure, String>> createSession(
+  /// funciona o un [SignInFailure] si sucede un error.
+  Future<Either<SignInFailure, String>> createSession(
     String requestToken,
   ) async {
     final result = await _http.request(

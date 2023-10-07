@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../widgets/submit_button.dart';
 import 'controller/sign_in_controller.dart';
+import 'controller/sign_in_state.dart';
 
 class SignInView extends StatelessWidget {
   const SignInView({super.key});
@@ -10,7 +11,10 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<SignInController>(
-      create: (_) => SignInController(),
+      create: (_) => SignInController(
+        const SignInState(),
+        authenticationRepository: context.read(),
+      ),
       child: Scaffold(
         body: SafeArea(
           child: Padding(
@@ -19,7 +23,7 @@ class SignInView extends StatelessWidget {
               child: Builder(builder: (context) {
                 final controller = Provider.of<SignInController>(context);
                 return AbsorbPointer(
-                  absorbing: controller.fetching,
+                  absorbing: controller.state.fetching,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
