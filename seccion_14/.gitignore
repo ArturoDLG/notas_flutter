@@ -45,3 +45,9 @@ app.*.map.json
 
 # hide key from version control
 api_keys.json
+
+
+#hide code generation
+*.g.dart
+*.freezed.dart
+lib/app/generated/

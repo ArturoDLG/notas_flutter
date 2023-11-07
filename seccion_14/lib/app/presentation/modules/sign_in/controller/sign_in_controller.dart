@@ -1,11 +1,9 @@
-import '../../../../../domain/either.dart';
-import '../../../../../domain/enums.dart';
-import '../../../../../domain/models/user.dart';
-import '../../../../../domain/repositories/authentication_repository.dart';
-import '../../../../global/state_notifier.dart';
-import '../../widgets/submit_button.dart';
-import '../sign_in_view.dart';
-import 'sign_in_state.dart';
+import '../../../../domain/either/either.dart';
+import '../../../../domain/failures/sign_in/sign_in_failure.dart';
+import '../../../../domain/models/user/user.dart';
+import '../../../../domain/repositories/authentication_repository.dart';
+import '../../../global/state_notifier.dart';
+import 'state/sign_in_state.dart';
 
 /// Controlador de la logica de la vista [SignInView]
 ///
@@ -55,8 +53,8 @@ class SignInController extends StateNotifier<SignInState> {
     );
 
     result.when(
-      (_) => state = state.copyWith(fetching: false),
-      (_) => null,
+      left: (_) => state = state.copyWith(fetching: false),
+      right: (_) => null,
     );
 
     return result;

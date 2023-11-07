@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../domain/enums.dart';
-import '../../../routes/routes.dart';
-import '../views/controller/sign_in_controller.dart';
+import '../../../../../domain/failures/sign_in/sign_in_failure.dart';
+import '../../../../global/controller/favorites/favorites_controller.dart';
+import '../../../../global/controller/session_controller.dart';
+import '../../../../routes/routes.dart';
+import '../../controller/sign_in_controller.dart';
 
 class SubmitButton extends StatelessWidget {
   const SubmitButton({super.key});
@@ -35,13 +37,15 @@ class SubmitButton extends StatelessWidget {
     if (!controller.mounted) {
       return;
     }
+
     result.when(
-      (failure) {
+      left: (failure) {
         final message = switch (failure) {
-          SignInFailure.notFound => 'Not Found',
-          SignInFailure.unauthorized => 'Invalid Password',
-          SignInFailure.unknown => 'Error',
-          SignInFailure.network => 'Network error',
+          SignInFailureNotFound() => 'Not Found',
+          SignInFailureUnauthorized() => 'Invalid User or Password',
+          SignInFailureUnknown() => 'Error',
+          SignInFailureNetwork() => 'Network error',
+          SignInFailureNotVerified() => 'Email not verified',
         };
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -49,7 +53,11 @@ class SubmitButton extends StatelessWidget {
           ),
         );
       },
-      (user) {
+      right: (user) {
+        final SessionController sessionController = context.read();
+        final FavoritesController favoritesController = context.read();
+        sessionController.setUser(user);
+        favoritesController.init();
         Navigator.pushReplacementNamed(
           context,
           Routes.home,

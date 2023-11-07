@@ -1,8 +1,5 @@
-/// Enum para indicar los errores de inicio de sesión (notFound, unauthorized,
-/// unknow, network).
-enum SignInFailure {
-  notFound,
-  unauthorized,
-  unknown,
-  network,
+/// Enum para indicar el margen de tiempo
+enum TimeWindow {
+  day,
+  week,
 }

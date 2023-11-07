@@ -1,6 +1,6 @@
-import '../either.dart';
-import '../enums.dart';
-import '../models/user.dart';
+import '../either/either.dart';
+import '../failures/sign_in/sign_in_failure.dart';
+import '../models/user/user.dart';
 
 /// Clase abstracta para implementar la logica de inicio de sesion
 abstract class AuthenticationRepository {

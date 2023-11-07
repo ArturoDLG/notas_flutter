@@ -1,5 +1,5 @@
-import '../../../domain/either.dart';
-import '../../../domain/enums.dart';
+import '../../../domain/either/either.dart';
+import '../../../domain/failures/sign_in/sign_in_failure.dart';
 import '../../http/http.dart';
 
 /// Clase encargada para la autentificación en la API de themoviedb.
@@ -30,16 +30,16 @@ class AuthenticationAPI {
   Either<SignInFailure, String> _handleFailure(HttpFailure failure) {
     if (failure.statusCode != null) {
       return switch (failure.statusCode!) {
-        401 => Either.left(SignInFailure.unauthorized),
-        404 => Either.left(SignInFailure.notFound),
-        _ => Either.left(SignInFailure.unknown),
+        401 => _handle401Error(failure),
+        404 => Either.left(SignInFailureNotFound()),
+        _ => Either.left(SignInFailureUnknown()),
       };
     }
 
     if (failure.exception is NetworkException) {
-      return Either.left(SignInFailure.network);
+      return Either.left(SignInFailureNetwork());
     }
-    return Either.left(SignInFailure.unknown);
+    return Either.left(SignInFailureUnknown());
   }
 
   /// Metodo para solicitar un requestToken.
@@ -56,8 +56,8 @@ class AuthenticationAPI {
       },
     );
     return result.when(
-      _handleFailure,
-      (requestToken) => Either.right(requestToken),
+      left: _handleFailure,
+      right: (requestToken) => Either.right(requestToken),
     );
   }
 
@@ -89,8 +89,8 @@ class AuthenticationAPI {
     );
 
     return result.when(
-      _handleFailure,
-      (newRequestToken) => Either.right(newRequestToken),
+      left: _handleFailure,
+      right: (newRequestToken) => Either.right(newRequestToken),
     );
   }
 
@@ -116,8 +116,23 @@ class AuthenticationAPI {
       },
     );
     return result.when(
-      _handleFailure,
-      (sessionID) => Either.right(sessionID),
+      left: _handleFailure,
+      right: (sessionID) => Either.right(sessionID),
     );
+  }
+
+  /// Metodo para manejar los diferentes tipos de error 401 de la API de
+  /// autentificación.
+  ///
+  /// [failure] Instancia de [HttpFailure] con el error sucedido.
+  ///
+  /// El metodo retorna un [Either] con un [SignInFailureNotVerified] si el
+  /// error 401 fue causado por correo no verificado, de lo contrario el error
+  /// sera un [SignInFailureUnauthorized].
+  Either<SignInFailure, String> _handle401Error(HttpFailure failure) {
+    if (failure.data is Map && (failure.data as Map)['status_code'] == 32) {
+      return Either.left(SignInFailureNotVerified());
+    }
+    return Either.left(SignInFailureUnauthorized());
   }
 }

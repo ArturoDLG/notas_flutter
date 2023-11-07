@@ -1,6 +1,6 @@
-import '../../domain/either.dart';
-import '../../domain/enums.dart';
-import '../../domain/models/user.dart';
+import '../../domain/either/either.dart';
+import '../../domain/failures/sign_in/sign_in_failure.dart';
+import '../../domain/models/user/user.dart';
 import '../../domain/repositories/authentication_repository.dart';
 import '../services/local/session_service.dart';
 import '../services/remote/account_api.dart';
@@ -26,12 +26,22 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     this._accountApi,
   );
 
+  /// Getter para detectar una sesion activa en el dispositivo.
   @override
   Future<bool> get isSignedIn async {
     final sessionId = await _sessionService.sessionId;
     return sessionId != null;
   }
 
+  /// Metodo para iniciar una nueva sesion en el dispositivo.
+  ///
+  /// [username] nombre del usuario representado por un [String].
+  ///
+  /// [password] contraseña del usuario representado por un [String].
+  ///
+  /// Se retorna un [Future] con una instancia de [Either], el cual nos devuelve
+  /// [User] si el inicio de sesion se llevo exitosamente, de lo contrario
+  /// retorna un [SignInFailure] con el fallo correspondiente.
   @override
   Future<Either<SignInFailure, User>> singIn(
     String username,
@@ -40,8 +50,8 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     final requestToken = await _authenticationAPI.createRequestToken();
 
     return requestToken.when(
-      (failure) async => Either.left(failure),
-      (requestToken) async {
+      left: (failure) async => Either.left(failure),
+      right: (requestToken) async {
         final loginResult = await _authenticationAPI.createSessionWithLogin(
           username: username,
           password: password,
@@ -49,21 +59,21 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
         );
 
         return loginResult.when(
-          (failure) async => Either.left(failure),
-          (newRequestToken) async {
+          left: (failure) async => Either.left(failure),
+          right: (newRequestToken) async {
             final sessionResult = await _authenticationAPI.createSession(
               newRequestToken,
             );
 
             return sessionResult.when(
-              (failure) async => Either.left(failure),
-              (sessionId) async {
+              left: (failure) async => Either.left(failure),
+              right: (sessionId) async {
                 await _sessionService.saveSessionId(sessionId);
 
                 final user = await _accountApi.getAccount(sessionId);
 
                 if (user == null) {
-                  return Either.left(SignInFailure.unknown);
+                  return Either.left(SignInFailureUnknown());
                 }
 
                 return Either.right(user);
@@ -75,6 +85,7 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     );
   }
 
+  /// Metodo para cerrar la sesion activa en el dispositivo.
   @override
   Future<void> signOut() {
     return _sessionService.signOut();

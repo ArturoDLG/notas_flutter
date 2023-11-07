@@ -3,6 +3,15 @@
 Este es el proyecto del curso, donde se pone en practica todo lo visto en las secciones anteriores, para implementar
 un app de streaming.
 
+## Local deploy
+Para serializar los archivos de la carpeta models usar el siguiente comando:
+
+```
+flutter pub get
+flutter pub run flutter_gen:flutter_gen_command
+flutter pub run build_runner build
+```
+
 ## Caracteristicas
 
 * Implementar Arquitectura limpia

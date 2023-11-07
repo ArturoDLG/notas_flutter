@@ -7,6 +7,12 @@ import '../services/remote/internet_checker.dart';
 class ConnectivityRepositoryImpl implements ConnectivityRepository {
   final Connectivity _connectivity;
   final InternetChecker _internetChecker;
+
+  /// [_connectivity] Instancia de [Connectivity] para realizar una conexión a
+  /// internet.
+  ///
+  /// [_internetChecker] Instancia de [InternetChecker] para comprobar que una
+  /// conexión tiene salida a internet.
   ConnectivityRepositoryImpl(
     this._connectivity,
     this._internetChecker,

@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import '../../../../domain/repositories/account_repository.dart';
 import '../../../../domain/repositories/authentication_repository.dart';
 import '../../../../domain/repositories/connectivity_repository.dart';
+import '../../../global/controller/favorites/favorites_controller.dart';
+import '../../../global/controller/session_controller.dart';
 import '../../../routes/routes.dart';
 
 class SplashView extends StatefulWidget {
@@ -25,28 +27,37 @@ class _SplashViewState extends State<SplashView> {
   }
 
   Future<void> _init() async {
-    final ConnectivityRepository connectivityRepository = context.read();
-    final AuthenticationRepository authenticationRepository = context.read();
-    final AccountRepository accountRepository = context.read();
+    final routeName = await () async {
+      final ConnectivityRepository connectivityRepository = context.read();
+      final AuthenticationRepository authenticationRepository = context.read();
+      final AccountRepository accountRepository = context.read();
+      final SessionController sessionController = context.read();
+      final FavoritesController favoritesController = context.read();
 
-    final hasInternet = await connectivityRepository.hasInternet;
+      final hasInternet = await connectivityRepository.hasInternet;
 
-    if (hasInternet) {
-      final isSigned = await authenticationRepository.isSignedIn;
-      if (isSigned) {
-        final user = await accountRepository.getUserData();
-        if (mounted) {
-          if (user != null) {
-            _goTo(Routes.home);
-          } else {
-            _goTo(Routes.singIn);
-          }
-        }
-      } else if (mounted) {
-        _goTo(Routes.singIn);
+      if (!hasInternet) {
+        return Routes.offline;
       }
-    } else {
-      _goTo(Routes.offline);
+
+      final isSignedIn = await authenticationRepository.isSignedIn;
+
+      if (!isSignedIn) {
+        return Routes.singIn;
+      }
+
+      final user = await accountRepository.getUserData();
+      if (user != null) {
+        sessionController.setUser(user);
+        favoritesController.init();
+        return Routes.home;
+      }
+
+      return Routes.singIn;
+    }();
+
+    if (mounted) {
+      _goTo(routeName);
     }
   }
 
