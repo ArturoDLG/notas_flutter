@@ -12,15 +12,10 @@ class FavoritesAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: const Text('Favorites'),
-      titleTextStyle: const TextStyle(
-        color: Colors.black,
-      ),
       centerTitle: true,
       iconTheme: const IconThemeData(
         color: Colors.black,
       ),
-      backgroundColor: Colors.white,
-      elevation: 0,
       bottom: TabBar(
         controller: tabController,
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -28,7 +23,6 @@ class FavoritesAppBar extends StatelessWidget implements PreferredSizeWidget {
           color: Colors.blue,
           width: 20,
         ),
-        labelColor: Colors.black,
         indicatorSize: TabBarIndicatorSize.label,
         tabs: const [
           Tab(

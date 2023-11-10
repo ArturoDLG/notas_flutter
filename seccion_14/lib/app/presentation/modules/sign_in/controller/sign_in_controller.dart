@@ -2,6 +2,8 @@ import '../../../../domain/either/either.dart';
 import '../../../../domain/failures/sign_in/sign_in_failure.dart';
 import '../../../../domain/models/user/user.dart';
 import '../../../../domain/repositories/authentication_repository.dart';
+import '../../../global/controller/favorites/favorites_controller.dart';
+import '../../../global/controller/session_controller.dart';
 import '../../../global/state_notifier.dart';
 import 'state/sign_in_state.dart';
 
@@ -13,9 +15,13 @@ import 'state/sign_in_state.dart';
 /// encargada del inicio de sesión.
 class SignInController extends StateNotifier<SignInState> {
   final AuthenticationRepository authenticationRepository;
+  final SessionController sessionController;
+  final FavoritesController favoritesController;
   SignInController(
     super.state, {
     required this.authenticationRepository,
+    required this.sessionController,
+    required this.favoritesController,
   });
 
   /// Metodo para modificar el nombre de usuario, removiendo espacios en blanco
@@ -54,7 +60,10 @@ class SignInController extends StateNotifier<SignInState> {
 
     result.when(
       left: (_) => state = state.copyWith(fetching: false),
-      right: (_) => null,
+      right: (user) {
+        sessionController.setUser(user);
+        favoritesController.init();
+      },
     );
 
     return result;

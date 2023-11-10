@@ -90,4 +90,43 @@ class AccountApi {
       right: (value) => Either.right(value),
     );
   }
+
+  /// Metodo para marcar una pelicula/serie como favorito para la cuenta.
+  ///
+  /// [mediaId] identificador de la pelicula/serie.
+  ///
+  /// [type] tipo de media indicado por un [MediaType].
+  ///
+  /// [favorite] valor [bool] para indicar si marcamos o no un contenido como
+  /// favorito.
+  ///
+  /// El metodo retorna un [Future] con una instancia de [Either] el cual
+  /// devuelve [void] al realizar la tarea y un [HttpRequestFailure] si falla el
+  /// proceso.
+  Future<Either<HttpRequestFailure, void>> markAsFavorite({
+    required int mediaId,
+    required MediaType type,
+    required bool favorite,
+  }) async {
+    final accountId = await _sessionService.accountId;
+    final sessionId = await _sessionService.sessionId ?? '';
+    final result = await _http.request(
+      '/account/$accountId/favorite',
+      method: HttpMethod.post,
+      queryParameters: {
+        'session_id': sessionId,
+      },
+      body: {
+        'media_type': type.name,
+        'media_id': mediaId,
+        'favorite': favorite,
+      },
+      onSuccess: (_) => null,
+    );
+
+    return result.when(
+      left: handleHttpFailure,
+      right: (_) => Either.right(null),
+    );
+  }
 }

@@ -69,8 +69,9 @@ class Http {
     HttpMethod method = HttpMethod.get,
     Map<String, String> headers = const {},
     Map<String, String> queryParameters = const {},
-    Map<String, String> body = const {},
+    Map<String, dynamic> body = const {},
     bool useApiKey = true,
+    Duration timeout = const Duration(seconds: 10),
   }) async {
     Map<String, dynamic> logs = {};
     StackTrace? stackTrace;
@@ -99,27 +100,35 @@ class Http {
       };
 
       final Response response = switch (method) {
-        HttpMethod.get => await _client.get(url),
-        HttpMethod.post => await _client.post(
-            url,
-            headers: headers,
-            body: bodyString,
-          ),
-        HttpMethod.patch => await _client.patch(
-            url,
-            headers: headers,
-            body: bodyString,
-          ),
-        HttpMethod.delete => await _client.delete(
-            url,
-            headers: headers,
-            body: bodyString,
-          ),
-        HttpMethod.put => await _client.put(
-            url,
-            headers: headers,
-            body: bodyString,
-          ),
+        HttpMethod.get => await _client.get(url).timeout(timeout),
+        HttpMethod.post => await _client
+            .post(
+              url,
+              headers: headers,
+              body: bodyString,
+            )
+            .timeout(timeout),
+        HttpMethod.patch => await _client
+            .patch(
+              url,
+              headers: headers,
+              body: bodyString,
+            )
+            .timeout(timeout),
+        HttpMethod.delete => await _client
+            .delete(
+              url,
+              headers: headers,
+              body: bodyString,
+            )
+            .timeout(timeout),
+        HttpMethod.put => await _client
+            .put(
+              url,
+              headers: headers,
+              body: bodyString,
+            )
+            .timeout(timeout),
       };
 
       final statusCode = response.statusCode;

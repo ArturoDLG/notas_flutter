@@ -8,7 +8,16 @@ import '../models/user/user.dart';
 abstract class AccountRepository {
   /// Metodo para recuperar los datos de un usuario.
   Future<User?> getUserData();
+
+  /// Metodo para obtener los favoritos de un usuario.
   Future<Either<HttpRequestFailure, Map<int, Media>>> getFavorites(
     MediaType type,
   );
+
+  /// Metodo para marcar un media como favorito.
+  Future<Either<HttpRequestFailure, void>> markAsFavorite({
+    required int mediaId,
+    required MediaType type,
+    required bool favorite,
+  });
 }

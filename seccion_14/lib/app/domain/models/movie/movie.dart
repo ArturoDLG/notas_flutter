@@ -22,7 +22,7 @@ part 'movie.g.dart';
 ///
 /// [originalTitle] titulo de la pelicula en el idioma original de la pelicula.
 ///
-/// [backdropPath] url de la imagen de fondo de la pelicula.
+/// [backdropPath] url de la imagen de fondo de la pelicula, puede ser nulo.
 ///
 /// [posterPath] url del poster de promocion de la pelicula.
 ///
@@ -32,7 +32,8 @@ part 'movie.g.dart';
 
 @freezed
 class Movie with _$Movie {
-  factory Movie({
+  const Movie._();
+  const factory Movie({
     required int id,
     required List<Genre> genres,
     required String overview,
@@ -45,11 +46,24 @@ class Movie with _$Movie {
       readValue: readOriginalTitleValue,
     )
     required String originalTitle,
-    @JsonKey(name: 'backdrop_path') required String backdropPath,
+    @JsonKey(name: 'backdrop_path') required String? backdropPath,
     @JsonKey(name: 'poster_path') required String posterPath,
     @JsonKey(name: 'vote_average') required double voteAverage,
     @JsonKey(name: 'release_date') required DateTime realeseDate,
   }) = _Movie;
 
   factory Movie.fromJson(Json json) => _$MovieFromJson(json);
+
+  Media toMedia() {
+    return Media(
+      id: id,
+      overview: overview,
+      title: title,
+      originalTitle: originalTitle,
+      posterPath: posterPath,
+      backdropPath: backdropPath,
+      voteAverage: voteAverage,
+      type: MediaType.movie,
+    );
+  }
 }

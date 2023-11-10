@@ -53,4 +53,29 @@ class AccountRepositoryImpl implements AccountRepository {
       MediaType type) {
     return _accountApi.getFavorites(type);
   }
+
+  /// Metodo para marcar una pelicula/serie como favorito para la cuenta.
+  ///
+  /// [mediaId] identificador de la pelicula/serie.
+  ///
+  /// [type] tipo de media indicado por un [MediaType].
+  ///
+  /// [favorite] valor [bool] para indicar si marcamos o no un contenido como
+  /// favorito.
+  ///
+  /// El metodo retorna un [Future] con una instancia de [Either] el cual
+  /// devuelve [void] al realizar la tarea y un [HttpRequestFailure] si falla el
+  /// proceso.
+  @override
+  Future<Either<HttpRequestFailure, void>> markAsFavorite({
+    required int mediaId,
+    required MediaType type,
+    required bool favorite,
+  }) {
+    return _accountApi.markAsFavorite(
+      mediaId: mediaId,
+      type: type,
+      favorite: favorite,
+    );
+  }
 }

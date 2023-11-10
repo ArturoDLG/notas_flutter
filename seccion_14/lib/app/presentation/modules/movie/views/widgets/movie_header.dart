@@ -2,6 +2,7 @@ import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../domain/models/movie/movie.dart';
+import '../../../../global/extensions/build_context_ext.dart';
 import '../../../../global/utils/get_image_url.dart';
 
 class MovieHeader extends StatelessWidget {
@@ -18,15 +19,19 @@ class MovieHeader extends StatelessWidget {
       children: [
         AspectRatio(
           aspectRatio: 16 / 13,
-          child: ExtendedImage.network(
-            getImageUrl(
-              movie.backdropPath,
-              imageQuality: ImageQuality.original,
-            ),
-            width: double.infinity,
-            height: double.infinity,
-            fit: BoxFit.cover,
-          ),
+          child: movie.backdropPath != null
+              ? ExtendedImage.network(
+                  getImageUrl(
+                    movie.backdropPath!,
+                    imageQuality: ImageQuality.original,
+                  ),
+                  width: double.infinity,
+                  height: double.infinity,
+                  fit: BoxFit.cover,
+                )
+              : Container(
+                  color: Colors.black54,
+                ),
         ),
         Positioned(
           left: 0,
@@ -55,10 +60,8 @@ class MovieHeader extends StatelessWidget {
                     children: [
                       Text(
                         movie.title,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: context.textTheme.titleMedium
+                            ?.copyWith(color: Colors.white),
                       ),
                       const SizedBox(height: 10),
                       Wrap(
@@ -100,11 +103,7 @@ class MovieHeader extends StatelessWidget {
                     ),
                     Text(
                       movie.voteAverage.toStringAsFixed(1),
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                      style: context.textTheme.titleLarge,
                     ),
                   ],
                 ),
