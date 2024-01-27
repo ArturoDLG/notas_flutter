@@ -22,6 +22,8 @@ dependencies:
   url_strategy: ^0.2.0
   google_fonts: ^6.1.0
   shared_preferences: ^2.2.2
+  slang: ^3.25.0
+  slang_flutter: ^3.25.0
 
 dev_dependencies:
   flutter_test:
@@ -31,6 +33,7 @@ dev_dependencies:
   json_serializable: ^6.7.1
   freezed: ^2.4.3
   flutter_gen: ^5.3.2
+  slang_build_runner: ^3.25.0
 
 flutter:
   uses-material-design: true

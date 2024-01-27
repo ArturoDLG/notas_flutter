@@ -4,16 +4,20 @@ Este repositorio funciona es una colección de apuntes de desarrollo para el cur
 
 En el se encuentran una serie de ejemplos desarrollados en los temas vistos en el curso, con comentarios para reforzar los conceptos del lenguaje Dart y el framework Flutter 📱.
 
+>Nota: Se eliminó el numero de sección de los proyectos dado a que el curso actualizó algunos contenidos. Se optó por usar unicamente los nombres de las secciones para referirse a estos.
+
 Los temas contenidos en este repositorio son:
 
-* [Seccion 2: Programación con Dart y null safety](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_2)
-* [Sección 5: Widgets mas usados en Flutter](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_5)
-* [Sección 5 (Proyecto): Facebook UI](https://github.com/ArturoDLG/notas_flutter/tree/main/facebook_ui)
-* [Sección 6: StatelessWidget y StatefulWidget](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_6)
-* [Sección 7: Navegación y diálogos](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_7)
-* [Sección 8: Inputs](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_8)
-* [Sección 9: Keys](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_9)
-* [Sección 10: El contexto en Flutter](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_10)
-* [Sección 11: Inherited Widget](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_11)
+* [Dart y null safety](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_2)
+* [Widgets mas usados en Flutter](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_5)
+* [Proyecto: Facebook UI](https://github.com/ArturoDLG/notas_flutter/tree/main/facebook_ui)
+* [StatelessWidget y StatefulWidget](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_6)
+* [Navegación y diálogos](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_7)
+* [Inputs](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_8)
+* [Keys](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_9)
+* [El contexto en Flutter](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_10)
+* [Inherited Widget](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_11)
 * [Sección 12: Formularios](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_12)
-* [Sección 14: Clean Architecture](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_14)
+* [Clean Architecture / Streams y soporte para multiples idiomas](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_14)
+* [Internacionalización y localización](https://github.com/ArturoDLG/notas_flutter/tree/main/flutter-i18n)
+* [Streams](https://github.com/ArturoDLG/notas_flutter/tree/main/flutter-streams)
