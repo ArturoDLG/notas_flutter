@@ -5,6 +5,7 @@ import '../../../domain/models/media/media.dart';
 import '../../../domain/models/performer/performer.dart';
 import '../../../domain/typedefs.dart';
 import '../../http/http.dart';
+import '../local/language_services.dart';
 import '../utils/handle_failure.dart';
 
 /// Clase encargada de busqueda de tendencias de peliculas, series y actores
@@ -13,8 +14,12 @@ import '../utils/handle_failure.dart';
 /// [_http] Instancia de [Http] para realizar peticiones en la API.
 class TrendingApi {
   final Http _http;
+  final LanguageService _languageService;
 
-  TrendingApi(this._http);
+  TrendingApi(
+    this._http,
+    this._languageService,
+  );
 
   /// Método para obtener las peliculas y series en tendencia.
   ///
@@ -28,6 +33,7 @@ class TrendingApi {
       TimeWindow timeWindow) async {
     final result = await _http.request(
       '/trending/all/${timeWindow.name}',
+      languageCode: _languageService.languageCode,
       onSuccess: (json) {
         final list = List<Json>.from(
           json['results'],
@@ -52,6 +58,7 @@ class TrendingApi {
   ) async {
     final result = await _http.request(
       '/trending/person/${timeWindow.name}',
+      languageCode: _languageService.languageCode,
       onSuccess: (json) {
         final list = List<Json>.from(
           json['results'],

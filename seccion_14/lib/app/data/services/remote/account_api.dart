@@ -3,6 +3,7 @@ import '../../../domain/failures/http_request/http_request_failure.dart';
 import '../../../domain/models/media/media.dart';
 import '../../../domain/models/user/user.dart';
 import '../../http/http.dart';
+import '../local/language_services.dart';
 import '../local/session_service.dart';
 import '../utils/handle_failure.dart';
 
@@ -15,9 +16,11 @@ import '../utils/handle_failure.dart';
 class AccountApi {
   final Http _http;
   final SessionService _sessionService;
+  final LanguageService _languageService;
   AccountApi(
     this._http,
     this._sessionService,
+    this._languageService,
   );
 
   /// Metodo para obtener la informacion de un usuario.
@@ -61,6 +64,7 @@ class AccountApi {
       queryParameters: {
         'session_id': sessionId,
       },
+      languageCode: _languageService.languageCode,
       onSuccess: (json) {
         final list = json['results'] as List;
         // final iterable = list.map(

@@ -1,0 +1,7 @@
+{
+    "trending": "TRENDING",
+    "dropdownButton" : {
+        "last24": "last 24h",
+        "lastWeek": "last week"
+    }
+}

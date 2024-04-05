@@ -71,6 +71,7 @@ class Http {
     Map<String, String> queryParameters = const {},
     Map<String, dynamic> body = const {},
     bool useApiKey = true,
+    String languageCode = 'en',
     Duration timeout = const Duration(seconds: 10),
   }) async {
     Map<String, dynamic> logs = {};
@@ -86,7 +87,12 @@ class Http {
         path.startsWith('http') ? path : '$_baseUrl$path',
       );
       if (queryParameters.isNotEmpty) {
-        url = url.replace(queryParameters: queryParameters);
+        url = url.replace(
+          queryParameters: {
+            ...queryParameters,
+            'language': languageCode,
+          },
+        );
       }
       headers = {
         'Content-Type': 'application/json',

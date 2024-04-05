@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   
   connectivity_plus: ^4.0.2 
   http: ^1.1.0
@@ -24,6 +26,7 @@ dependencies:
   shared_preferences: ^2.2.2
   slang: ^3.25.0
   slang_flutter: ^3.25.0
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:

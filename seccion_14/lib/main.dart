@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_strategy/url_strategy.dart';
@@ -11,9 +12,11 @@ import 'app/data/http/http.dart';
 import 'app/data/repositories_implementations/account_repository_impl.dart';
 import 'app/data/repositories_implementations/authentication_repository_impl.dart';
 import 'app/data/repositories_implementations/connectivity_repository_impl.dart';
+import 'app/data/repositories_implementations/language_repository_impl.dart';
 import 'app/data/repositories_implementations/movies_repository_impl.dart';
 import 'app/data/repositories_implementations/preferences_repository_impl.dart';
 import 'app/data/repositories_implementations/trending_repository_impl.dart';
+import 'app/data/services/local/language_services.dart';
 import 'app/data/services/local/session_service.dart';
 import 'app/data/services/remote/account_api.dart';
 import 'app/data/services/remote/authentication_api.dart';
@@ -23,9 +26,11 @@ import 'app/data/services/remote/trending_api.dart';
 import 'app/domain/repositories/account_repository.dart';
 import 'app/domain/repositories/authentication_repository.dart';
 import 'app/domain/repositories/connectivity_repository.dart';
+import 'app/domain/repositories/language_repository.dart';
 import 'app/domain/repositories/movies_repository.dart';
 import 'app/domain/repositories/preferences_repository.dart';
 import 'app/domain/repositories/trending_repository.dart';
+import 'app/generated/translations.g.dart';
 import 'app/my_app.dart';
 import 'app/presentation/global/controller/favorites/favorites_controller.dart';
 import 'app/presentation/global/controller/favorites/state/favorites_state.dart';
@@ -35,8 +40,14 @@ import 'app/presentation/global/controller/theme_controller.dart';
 void main() async {
   setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
+  LocaleSettings.useDeviceLocale();
+  Intl.defaultLocale = LocaleSettings.currentLocale.languageTag;
+
   final sessionService = SessionService(
     const FlutterSecureStorage(),
+  );
+  final languageService = LanguageService(
+    LocaleSettings.currentLocale.languageCode,
   );
   final http = Http(
     baseUrl: 'https://api.themoviedb.org/3',
@@ -46,6 +57,7 @@ void main() async {
   final accountApi = AccountApi(
     http,
     sessionService,
+    languageService,
   );
   final systemDarkMode =
       PlatformDispatcher.instance.platformBrightness == Brightness.dark;
@@ -67,6 +79,9 @@ void main() async {
             sessionService,
           ),
         ),
+        Provider<LanguageRepository>(
+          create: (_) => LanguageRepositoryImpl(languageService),
+        ),
         Provider<PreferencesRepository>(
           create: (_) => PreferencesRepositoryImpl(preferences),
         ),
@@ -84,18 +99,23 @@ void main() async {
         ),
         Provider<TrendingRepository>(
           create: (_) => TrendingRepositoryImpl(
-            TrendingApi(http),
+            TrendingApi(
+              http,
+              languageService,
+            ),
           ),
         ),
         Provider<MoviesRepository>(
           create: (_) => MoviesRepositoryImpl(
-            MoviesAPI(http),
+            MoviesAPI(
+              http,
+              languageService,
+            ),
           ),
         ),
         ChangeNotifierProvider<ThemeController>(
           create: (context) {
             final PreferencesRepository preferencesRepository = context.read();
-            print(preferencesRepository.darkMode);
             return ThemeController(
               preferencesRepository.darkMode ?? systemDarkMode,
               preferencesRepository: preferencesRepository,
@@ -114,7 +134,7 @@ void main() async {
           ),
         ),
       ],
-      child: const MyApp(),
+      child: TranslationProvider(child: const MyApp()),
     ),
   );
 }

@@ -3,6 +3,7 @@ import '../../../domain/failures/http_request/http_request_failure.dart';
 import '../../../domain/models/movie/movie.dart';
 import '../../../domain/models/performer/performer.dart';
 import '../../http/http.dart';
+import '../local/language_services.dart';
 import '../utils/handle_failure.dart';
 
 /// Clase para obtener informacion acerca de las peliculas en la API.
@@ -10,8 +11,12 @@ import '../utils/handle_failure.dart';
 /// [_http] Instancia de [Http] para realizar las consultas a la API.
 class MoviesAPI {
   final Http _http;
+  final LanguageService _languageService;
 
-  MoviesAPI(this._http);
+  MoviesAPI(
+    this._http,
+    this._languageService,
+  );
 
   /// Metodo para obtener peliculas mediante su ID.
   ///
@@ -23,6 +28,7 @@ class MoviesAPI {
   Future<Either<HttpRequestFailure, Movie>> getMovieById(int id) async {
     final result = await _http.request(
       '/movie/$id',
+      languageCode: _languageService.languageCode,
       onSuccess: (json) {
         return Movie.fromJson(json);
       },
@@ -42,9 +48,11 @@ class MoviesAPI {
   /// [List<Performer>] con el cast participante de la pelicula solicitada,
   /// de lo contrario nos devuelve un [HttpRequestFailure] con la falla ocurrida.
   Future<Either<HttpRequestFailure, List<Performer>>> getCastByMovie(
-      int movieId) async {
+    int movieId,
+  ) async {
     final result = await _http.request(
       '/movie/$movieId/credits',
+      languageCode: _languageService.languageCode,
       onSuccess: (json) {
         final list = json['cast'] as List;
         return list

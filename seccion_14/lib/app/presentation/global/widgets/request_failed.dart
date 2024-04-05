@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../generated/assets.gen.dart';
+import '../../../generated/translations.g.dart';
 
 class RequestFailed extends StatelessWidget {
   final VoidCallback onRetry;
@@ -23,12 +24,12 @@ class RequestFailed extends StatelessWidget {
             //child: Assets.images.error404.image(),
             child: Assets.svgs.error404.svg(),
           ),
-          Text(text ?? 'Request Failed'),
+          Text(text ?? texts.misc.requestFailed),
           const SizedBox(height: 10),
           MaterialButton(
             onPressed: onRetry,
             color: Colors.blue,
-            child: const Text('Retry'),
+            child: Text(texts.misc.retry),
           ),
           const SizedBox(height: 10),
         ],

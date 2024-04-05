@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../../domain/failures/sign_in/sign_in_failure.dart';
+import '../../../../../generated/translations.g.dart';
 import '../../../../routes/routes.dart';
 import '../../controller/sign_in_controller.dart';
 
@@ -16,7 +17,7 @@ class SubmitButton extends StatelessWidget {
     } else {
       return MaterialButton(
         color: Colors.blue,
-        child: const Text('Sing In'),
+        child: Text(texts.signIn.signIn),
         onPressed: () {
           final isValid = Form.of(context).validate();
           if (isValid) {
@@ -39,11 +40,12 @@ class SubmitButton extends StatelessWidget {
     result.when(
       left: (failure) {
         final message = switch (failure) {
-          SignInFailureNotFound() => 'Not Found',
-          SignInFailureUnauthorized() => 'Invalid User or Password',
-          SignInFailureUnknown() => 'Error',
-          SignInFailureNetwork() => 'Network error',
-          SignInFailureNotVerified() => 'Email not verified',
+          SignInFailureNotFound() => texts.signIn.errors.submit.notFound,
+          SignInFailureUnauthorized() =>
+            texts.signIn.errors.submit.unauthorized,
+          SignInFailureUnknown() => texts.signIn.errors.submit.unknown,
+          SignInFailureNetwork() => texts.signIn.errors.submit.network,
+          SignInFailureNotVerified() => texts.signIn.errors.submit.notVerified,
         };
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
