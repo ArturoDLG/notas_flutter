@@ -22,3 +22,4 @@ Los temas contenidos en este repositorio son:
 * [Internacionalización y localización](https://github.com/ArturoDLG/notas_flutter/tree/main/flutter-i18n)
 * [Streams](https://github.com/ArturoDLG/notas_flutter/tree/main/flutter-streams)
 * [Streams y soporte para multiples idiomas con clean architecture](https://github.com/ArturoDLG/notas_flutter/tree/main/seccion_14)
+* [Navigator 2 y deep linking](https://github.com/ArturoDLG/notas_flutter/tree/main/flutter-navigator-2)
