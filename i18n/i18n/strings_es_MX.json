@@ -1,0 +1,8 @@
+{
+    "helloWorld" : "Hola Mexico",
+    "summary": "RESUMEN",
+    "productName": "Producto: {{name}}",
+    "price" : "Precio: {{price}}",
+    "releaseDate" : "Fecha: {{date}}",
+    "payNow" : "PAGAR AHORA {{total}}"
+}

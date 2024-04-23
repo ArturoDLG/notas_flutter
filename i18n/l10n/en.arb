@@ -1,0 +1,32 @@
+{
+    "@@locale" : "en",
+    "helloWorld" : "Hello World",
+    "summary": "SUMMARY",
+    "productName" : "Product: {name}",
+    "@productName" : {
+        "placeholders" : {
+            "name" : {}
+        }
+    },
+    "price" : "Price: {price}",
+    "@price" : {
+        "placeholders":
+        {
+            "price" : {}
+        }
+    },
+    "releaseDate" : "Release Date: {date}",
+    "@releaseDate" : {
+        "placeholders":
+        {
+            "date" : {}
+        }
+    },
+    "payNow" : "PAY NOW {total}",
+    "@payNow" : {
+        "placeholders":
+        {
+            "total" : {}
+        }
+    }
+}
